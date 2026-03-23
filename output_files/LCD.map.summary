@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sun Mar 22 20:55:38 2026
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Revision Name : LCD
+Top-level Entity Name : Demo_LCDvhd
+Family : Cyclone IV E
+Total logic elements : 52
+    Total combinational functions : 36
+    Dedicated logic registers : 40
+Total registers : 40
+Total pins : 64
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1

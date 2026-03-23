@@ -1,0 +1,37 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "LCD_DE",
+					"strict" : false
+				},
+				{
+					"name" : "LCD_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "LCD_B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "LCD_B[3]",
+					"strict" : false
+				},
+				{
+					"name" : "LCD_B[7]",
+					"strict" : false
+				},
+				{
+					"name" : "LCD_G[7]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
