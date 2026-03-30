@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE115F29C7
-set_global_assignment -name TOP_LEVEL_ENTITY testbenchV2_LCDlogic
+set_global_assignment -name TOP_LEVEL_ENTITY Demo_LCD
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:59:02  SEPTEMBER 06, 2024"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
@@ -686,6 +686,7 @@ set_global_assignment -name VHDL_FILE VeekMT2_LCDregV2.vhd
 set_global_assignment -name VHDL_FILE VeekMT2_LCDgenV2.vhd
 set_global_assignment -name SDC_FILE VeekMT2_LCD.sdc
 set_global_assignment -name SDC_FILE VeekMT2.sdc
+set_global_assignment -name VHDL_FILE L10Rom.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

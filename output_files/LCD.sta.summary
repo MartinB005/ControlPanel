@@ -3,11 +3,11 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 12.927
+Slack : 12.849
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.409
+Slack : 0.408
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
@@ -15,7 +15,7 @@ Slack : 9.819
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 14.862
+Slack : 14.859
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'LCD_DCLK'
@@ -23,7 +23,7 @@ Slack : 26.093
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 13.142
+Slack : 13.100
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
@@ -35,7 +35,7 @@ Slack : 9.799
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 14.863
+Slack : 14.860
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'LCD_DCLK'
@@ -43,11 +43,11 @@ Slack : 26.093
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 14.011
+Slack : 13.955
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'iLCDgenerator|iLCDpll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.185
+Slack : 0.186
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'

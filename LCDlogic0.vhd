@@ -15,7 +15,26 @@ entity LCDlogic0 is
 end entity;
 architecture behavioral of LCDlogic0 is
   constant DARKBLUE: RGB_t := ToRGB(0, 0, 139); -- the background
+  type sizes_t is record Width, Height: integer; end record;
+  constant L10img : sizes_t :=(192,70);
+  constant L10r1 : rect_t :=(520, 170, L10img.Width, L10img.Height);
+  constant L10r2 : rect_t :=(520, 170 + L10img.Height, L10img.Width, L10img.Height);
+  
+  type palette is array (0 to 2) of RGB_t;
+  constant L10p1:palette:=(X"EF7B19",  X"FFEF00",  X"4A8C7B");
+  --constant L10p2:palette4_t:=(BLACK, AQUA, X"696969", X"006400");
+  
+  signal L10addr: std_logic_vector(13 downto 0):=(others=>'0');
+  signal L10q, L10q0: std_logic_vector(1 downto 0):=(others=>'0');
+  
+  function toSlv(n:integer; slvWidth:positive) return std_logic_vector is
+	begin return std_logic_vector(to_unsigned(n,slvWidth));
+  end function;
+  
   begin -- architecture
+  
+  iL10Rom : entity work.L10Rom port map(L10addr, LCD_DCLK, L10q0);
+ L10q<=L10q0 when rising_edge(LCD_DCLK);
   
 LSPimage : process( xcolumn, yrow, LCD_DE)
 -- In any process, we prefer variables. They must be initialized in the code!!!
@@ -23,26 +42,35 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
    variable RGB :RGB_t := YELLOW; -- the color of pixel 
    variable x : integer  range 0 to XCOLUMN_MAX:=0; 
    variable y : integer  range 0 to YROW_MAX:=0; 
+	
+	 variable L10idRect : integer range 0 to 2:=0; -- the flag that the x,y pixel is inside a rectangle, 0 - no
+	variable L10ixColor : integer range L10p1'RANGE:=0; -- the
   begin 
      x := to_integer(xcolumn); y := to_integer(yrow); -- we convert unsigned inputs to integers
+	  L10idRect:=0;
+	  if InRect(L10r1, x, y) then L10idRect:=1; elsif InRect(L10r2,x,y) then L10idRect:=2; end if;
+	  L10ixColor := to_integer(unsigned(L10q));
+	  
      ---------- our image -------------------------
      RGB :=ORANGE;   
      
      if (y + LCD_WIDTH/2 < 2 * x - 300) and (y < LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
-     if (y + LCD_WIDTH/2 > LCD_WIDTH *2 - 2 * x) and (y > 2*LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
+     if (y > LCD_WIDTH + 378 - 2 * x) and (y > 2*LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
 	  
      if (x < 500) and (y > LCD_HEIGHT/3) and (y < 2*LCD_HEIGHT/3) 
 		and 3**2 *(x-500)**2 + 2**2 *(y-240)**2 > (250)**2 then RGB:=YELLOW; end if; 
 		
-	  	if 8 *(x-600)**2 + 22 *(y-240)**2 < (300)**2 and 8 *(x-600)**2 + 10 *(y-240)**2 > (230)**2 then
-			if (x > 550) then RGB:=YELLOW; else RGB:=OLIVE; end if;
+	  if L10idRect>0 and L10ixColor/=3 then -- Is the current pixel in any rectangle and a color-index is a opacity color?
+		RGB:=L10p1(L10ixColor);
 	  end if;
 	  
-	  if 3**2 *(x-600)**2 + 5**2 *(y-240)**2 < (300)**2 and 3**2 *(x-600)**2 + 5**2/2 *(y-240)**2 > (260)**2 then
-			if (x > 600) then RGB:=OLIVE; else RGB:=YELLOW; end if;
-	  end if;
+	  case L10idRect is
+			when 1=> L10addr<=toSlv( (y-L10r1.Y)*L10img.Width+(x-L10r1.X), L10addr'LENGTH );
+			when 2=> L10addr<=toSlv( (L10img.Height-(y-L10r2.Y)-1)*L10img.Width+(x-L10r2.X), L10addr'LENGTH );
+			when others=> L10addr<=(others=>'0');
+	  end case;
 	  
-
+	  
      ------------------------------------------------------------
      if LCD_DE = '0' then  RGB  := BLACK; end if; -- auxiliary clipping to LCD visible area
     

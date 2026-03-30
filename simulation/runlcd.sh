@@ -7,7 +7,7 @@ set -e
 TBNAME="testbenchV2_LCDlogic"
 
 # Files in proper compilation order
-FILES="../LCDpackV2.vhd ../LCDlogic0.vhd"
+FILES="../LCDpackV2.vhd ../L10Rom.vhd ../LCDlogic0.vhd"
 
 # Simulation time
 SIMTIME="20ms"

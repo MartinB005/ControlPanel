@@ -1,5 +1,5 @@
 Assembler report for LCD
-Sun Mar 22 20:55:47 2026
+Thu Mar 26 23:35:37 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -38,9 +38,9 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Mar 22 20:55:47 2026 ;
+; Assembler Status      ; Successful - Thu Mar 26 23:35:37 2026 ;
 ; Revision Name         ; LCD                                   ;
-; Top-level Entity Name ; Demo_LCDvhd                           ;
+; Top-level Entity Name ; Demo_LCD                              ;
 ; Family                ; Cyclone IV E                          ;
 ; Device                ; EP4CE115F29C7                         ;
 +-----------------------+---------------------------------------+
@@ -67,8 +67,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------+------------------+
 ; Option         ; Setting          ;
 +----------------+------------------+
-; JTAG usercode  ; 0x0056C2AB       ;
-; Checksum       ; 0x0056C2AB       ;
+; JTAG usercode  ; 0x00584B7D       ;
+; Checksum       ; 0x00584B7D       ;
 +----------------+------------------+
 
 
@@ -78,14 +78,14 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Mar 22 20:55:45 2026
+    Info: Processing started: Thu Mar 26 23:35:35 2026
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off LCD -c LCD
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 362 megabytes
-    Info: Processing ended: Sun Mar 22 20:55:47 2026
+    Info: Peak virtual memory: 358 megabytes
+    Info: Processing ended: Thu Mar 26 23:35:37 2026
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

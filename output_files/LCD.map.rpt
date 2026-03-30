@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LCD
-Sun Mar 22 20:55:38 2026
+Thu Mar 26 23:35:27 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,14 +13,20 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Parameter Settings for User Entity Instance: VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component
- 11. altpll Parameter Settings by Entity Instance
- 12. Port Connectivity Checks: "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component
+ 13. Parameter Settings for Inferred Entity Instance: LCDlogic0:iLCDlogic|lpm_mult:Mult0
+ 14. Parameter Settings for Inferred Entity Instance: LCDlogic0:iLCDlogic|lpm_mult:Mult1
+ 15. altpll Parameter Settings by Entity Instance
+ 16. lpm_mult Parameter Settings by Entity Instance
+ 17. Port Connectivity Checks: "LCDlogic0:iLCDlogic|L10Rom:iL10Rom"
+ 18. Port Connectivity Checks: "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
 
 
 
@@ -47,19 +53,19 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Mar 22 20:55:38 2026       ;
+; Analysis & Synthesis Status        ; Successful - Thu Mar 26 23:35:27 2026       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; LCD                                         ;
-; Top-level Entity Name              ; Demo_LCDvhd                                 ;
+; Top-level Entity Name              ; Demo_LCD                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 52                                          ;
-;     Total combinational functions  ; 36                                          ;
-;     Dedicated logic registers      ; 40                                          ;
-; Total registers                    ; 40                                          ;
+; Total logic elements               ; 217                                         ;
+;     Total combinational functions  ; 181                                         ;
+;     Dedicated logic registers      ; 65                                          ;
+; Total registers                    ; 65                                          ;
 ; Total pins                         ; 64                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 4                                           ;
 ; Total PLLs                         ; 1                                           ;
 +------------------------------------+---------------------------------------------+
 
@@ -70,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                            ; Demo_LCDvhd        ; LCD                ;
+; Top-level entity name                                            ; Demo_LCD           ; LCD                ;
 ; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; VHDL Show LMF Mapping Messages                                   ; Off                ;                    ;
 ; VHDL Version                                                     ; VHDL_2008          ; VHDL_1993          ;
@@ -168,23 +174,30 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                      ;
-+--------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path     ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                              ; Library ;
-+--------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------+---------+
-; LCDlogic0.vhd                        ; yes             ; User VHDL File               ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd                        ;         ;
-; LCDpackV2.vhd                        ; yes             ; User VHDL File               ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDpackV2.vhd                        ;         ;
-; Demo_LCDvhd.vhd                      ; yes             ; User VHDL File               ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd                      ;         ;
-; VeekMT2_LCDregV2.vhd                 ; yes             ; User VHDL File               ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDregV2.vhd                 ;         ;
-; VeekMT2_LCDgenV2.vhd                 ; yes             ; User VHDL File               ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd                 ;         ;
-; altpll.tdf                           ; yes             ; Megafunction                 ; /opt/quartus/libraries/megafunctions/altpll.tdf                                                           ;         ;
-; aglobal201.inc                       ; yes             ; Megafunction                 ; /opt/quartus/libraries/megafunctions/aglobal201.inc                                                       ;         ;
-; stratix_pll.inc                      ; yes             ; Megafunction                 ; /opt/quartus/libraries/megafunctions/stratix_pll.inc                                                      ;         ;
-; stratixii_pll.inc                    ; yes             ; Megafunction                 ; /opt/quartus/libraries/megafunctions/stratixii_pll.inc                                                    ;         ;
-; cycloneii_pll.inc                    ; yes             ; Megafunction                 ; /opt/quartus/libraries/megafunctions/cycloneii_pll.inc                                                    ;         ;
-; db/VeekMT2_LCDgenerator_PLL_altpll.v ; yes             ; Auto-Generated Megafunction  ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/db/VeekMT2_LCDgenerator_PLL_altpll.v ;         ;
-+--------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                            ;
++--------------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path     ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                              ; Library ;
++--------------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------------------------------+---------+
+; Demo_LCD.bdf                         ; yes             ; User Block Diagram/Schematic File  ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCD.bdf                         ;         ;
+; LCDlogic0.vhd                        ; yes             ; User VHDL File                     ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd                        ;         ;
+; LCDpackV2.vhd                        ; yes             ; User VHDL File                     ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDpackV2.vhd                        ;         ;
+; VeekMT2_LCDregV2.vhd                 ; yes             ; User VHDL File                     ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDregV2.vhd                 ;         ;
+; VeekMT2_LCDgenV2.vhd                 ; yes             ; User VHDL File                     ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd                 ;         ;
+; L10Rom.vhd                           ; yes             ; User VHDL File                     ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/L10Rom.vhd                           ;         ;
+; altpll.tdf                           ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/altpll.tdf                                                           ;         ;
+; aglobal201.inc                       ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/aglobal201.inc                                                       ;         ;
+; stratix_pll.inc                      ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/stratix_pll.inc                                                      ;         ;
+; stratixii_pll.inc                    ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/stratixii_pll.inc                                                    ;         ;
+; cycloneii_pll.inc                    ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/cycloneii_pll.inc                                                    ;         ;
+; db/VeekMT2_LCDgenerator_PLL_altpll.v ; yes             ; Auto-Generated Megafunction        ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/db/VeekMT2_LCDgenerator_PLL_altpll.v ;         ;
+; lpm_mult.tdf                         ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/lpm_mult.tdf                                                         ;         ;
+; lpm_add_sub.inc                      ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/lpm_add_sub.inc                                                      ;         ;
+; multcore.inc                         ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/multcore.inc                                                         ;         ;
+; bypassff.inc                         ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/bypassff.inc                                                         ;         ;
+; altshift.inc                         ; yes             ; Megafunction                       ; /opt/quartus/libraries/megafunctions/altshift.inc                                                         ;         ;
+; db/mult_p5t.tdf                      ; yes             ; Auto-Generated Megafunction        ; /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/db/mult_p5t.tdf                      ;         ;
++--------------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -192,65 +205,82 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                                                                               ;
 +---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 52                                                                                                                                                  ;
+; Estimated Total logic elements              ; 217                                                                                                                                                 ;
 ;                                             ;                                                                                                                                                     ;
-; Total combinational functions               ; 36                                                                                                                                                  ;
+; Total combinational functions               ; 181                                                                                                                                                 ;
 ; Logic element usage by number of LUT inputs ;                                                                                                                                                     ;
-;     -- 4 input functions                    ; 12                                                                                                                                                  ;
-;     -- 3 input functions                    ; 5                                                                                                                                                   ;
-;     -- <=2 input functions                  ; 19                                                                                                                                                  ;
+;     -- 4 input functions                    ; 45                                                                                                                                                  ;
+;     -- 3 input functions                    ; 80                                                                                                                                                  ;
+;     -- <=2 input functions                  ; 56                                                                                                                                                  ;
 ;                                             ;                                                                                                                                                     ;
 ; Logic elements by mode                      ;                                                                                                                                                     ;
-;     -- normal mode                          ; 19                                                                                                                                                  ;
-;     -- arithmetic mode                      ; 17                                                                                                                                                  ;
+;     -- normal mode                          ; 71                                                                                                                                                  ;
+;     -- arithmetic mode                      ; 110                                                                                                                                                 ;
 ;                                             ;                                                                                                                                                     ;
-; Total registers                             ; 40                                                                                                                                                  ;
-;     -- Dedicated logic registers            ; 40                                                                                                                                                  ;
+; Total registers                             ; 65                                                                                                                                                  ;
+;     -- Dedicated logic registers            ; 65                                                                                                                                                  ;
 ;     -- I/O registers                        ; 0                                                                                                                                                   ;
 ;                                             ;                                                                                                                                                     ;
 ; I/O pins                                    ; 64                                                                                                                                                  ;
 ;                                             ;                                                                                                                                                     ;
-; Embedded Multiplier 9-bit elements          ; 0                                                                                                                                                   ;
+; Embedded Multiplier 9-bit elements          ; 4                                                                                                                                                   ;
 ;                                             ;                                                                                                                                                     ;
 ; Total PLLs                                  ; 1                                                                                                                                                   ;
 ;     -- PLLs                                 ; 1                                                                                                                                                   ;
 ;                                             ;                                                                                                                                                     ;
 ; Maximum fan-out node                        ; VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component|VeekMT2_LCDgenerator_PLL_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 45                                                                                                                                                  ;
-; Total fan-out                               ; 272                                                                                                                                                 ;
-; Average fan-out                             ; 1.33                                                                                                                                                ;
+; Maximum fan-out                             ; 68                                                                                                                                                  ;
+; Total fan-out                               ; 767                                                                                                                                                 ;
+; Average fan-out                             ; 2.02                                                                                                                                                ;
 +---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                        ;
-+--------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+--------------+
-; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                             ; Entity Name                     ; Library Name ;
-+--------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+--------------+
-; |Demo_LCDvhd                                                 ; 36 (0)              ; 40 (0)                    ; 0           ; 0            ; 0       ; 0         ; 64   ; 0            ; |Demo_LCDvhd                                                                                                                                    ; Demo_LCDvhd                     ; work         ;
-;    |LCDlogic0:iLCDlogic|                                     ; 4 (4)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCDvhd|LCDlogic0:iLCDlogic                                                                                                                ; LCDlogic0                       ; work         ;
-;    |VeekMT2_LCDgenV2:iLCDgenerator|                          ; 29 (29)             ; 34 (33)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCDvhd|VeekMT2_LCDgenV2:iLCDgenerator                                                                                                     ; VeekMT2_LCDgenV2                ; work         ;
-;       |VeekMT2_LCDgenV2_PLL:iLCDpll|                         ; 0 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCDvhd|VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll                                                                        ; VeekMT2_LCDgenV2_PLL            ; work         ;
-;          |altpll:altpll_component|                           ; 0 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCDvhd|VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component                                                ; altpll                          ; work         ;
-;             |VeekMT2_LCDgenerator_PLL_altpll:auto_generated| ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCDvhd|VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component|VeekMT2_LCDgenerator_PLL_altpll:auto_generated ; VeekMT2_LCDgenerator_PLL_altpll ; work         ;
-;    |VeekMT2_LCDregV2:iLCDreg|                                ; 3 (3)               ; 6 (6)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCDvhd|VeekMT2_LCDregV2:iLCDreg                                                                                                           ; VeekMT2_LCDregV2                ; work         ;
-+--------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                     ;
++--------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+--------------+
+; Compilation Hierarchy Node                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                          ; Entity Name                     ; Library Name ;
++--------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+--------------+
+; |Demo_LCD                                                    ; 181 (0)             ; 65 (0)                    ; 0           ; 4            ; 0       ; 2         ; 64   ; 0            ; |Demo_LCD                                                                                                                                    ; Demo_LCD                        ; work         ;
+;    |LCDlogic0:iLCDlogic|                                     ; 143 (143)           ; 0 (0)                     ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |Demo_LCD|LCDlogic0:iLCDlogic                                                                                                                ; LCDlogic0                       ; work         ;
+;       |lpm_mult:Mult0|                                       ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |Demo_LCD|LCDlogic0:iLCDlogic|lpm_mult:Mult0                                                                                                 ; lpm_mult                        ; work         ;
+;          |mult_p5t:auto_generated|                           ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |Demo_LCD|LCDlogic0:iLCDlogic|lpm_mult:Mult0|mult_p5t:auto_generated                                                                         ; mult_p5t                        ; work         ;
+;       |lpm_mult:Mult1|                                       ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |Demo_LCD|LCDlogic0:iLCDlogic|lpm_mult:Mult1                                                                                                 ; lpm_mult                        ; work         ;
+;          |mult_p5t:auto_generated|                           ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |Demo_LCD|LCDlogic0:iLCDlogic|lpm_mult:Mult1|mult_p5t:auto_generated                                                                         ; mult_p5t                        ; work         ;
+;    |VeekMT2_LCDgenV2:iLCDgenerator|                          ; 29 (29)             ; 42 (41)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCD|VeekMT2_LCDgenV2:iLCDgenerator                                                                                                     ; VeekMT2_LCDgenV2                ; work         ;
+;       |VeekMT2_LCDgenV2_PLL:iLCDpll|                         ; 0 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCD|VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll                                                                        ; VeekMT2_LCDgenV2_PLL            ; work         ;
+;          |altpll:altpll_component|                           ; 0 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCD|VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component                                                ; altpll                          ; work         ;
+;             |VeekMT2_LCDgenerator_PLL_altpll:auto_generated| ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCD|VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component|VeekMT2_LCDgenerator_PLL_altpll:auto_generated ; VeekMT2_LCDgenerator_PLL_altpll ; work         ;
+;    |VeekMT2_LCDregV2:iLCDreg|                                ; 9 (9)               ; 23 (23)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Demo_LCD|VeekMT2_LCDregV2:iLCDreg                                                                                                           ; VeekMT2_LCDregV2                ; work         ;
++--------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                    ;
-+----------------------------------------------+----------------------------------------+
-; Register name                                ; Reason for Removal                     ;
-+----------------------------------------------+----------------------------------------+
-; VeekMT2_LCDregV2:iLCDreg|LCD_R[0..4]         ; Stuck at GND due to stuck port data_in ;
-; VeekMT2_LCDregV2:iLCDreg|LCD_G[0..6]         ; Stuck at GND due to stuck port data_in ;
-; VeekMT2_LCDregV2:iLCDreg|LCD_B[2,4..6]       ; Stuck at GND due to stuck port data_in ;
-; VeekMT2_LCDregV2:iLCDreg|LCD_R[5..7]         ; Stuck at GND due to stuck port data_in ;
-; VeekMT2_LCDgenV2:iLCDgenerator|xcolumn[0..3] ; Lost fanout                            ;
-; VeekMT2_LCDgenV2:iLCDgenerator|yrow[0..3]    ; Lost fanout                            ;
-; Total Number of Removed Registers = 27       ;                                        ;
-+----------------------------------------------+----------------------------------------+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 2           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 4           ;
+; Signed Embedded Multipliers           ; 2           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; VeekMT2_LCDregV2:iLCDreg|LCD_B[2,7]   ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 2 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -258,7 +288,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 40    ;
+; Total registers                              ; 65    ;
 ; Number of registers using Synchronous Clear  ; 10    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 1     ;
@@ -266,6 +296,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Number of registers using Clock Enable       ; 10    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |Demo_LCD|VeekMT2_LCDregV2:iLCDreg|LCD_G ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------+
@@ -642,6 +681,76 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: LCDlogic0:iLCDlogic|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+---------------------+
+; Parameter Name                                 ; Value        ; Type                ;
++------------------------------------------------+--------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 11           ; Untyped             ;
+; LPM_WIDTHB                                     ; 11           ; Untyped             ;
+; LPM_WIDTHP                                     ; 22           ; Untyped             ;
+; LPM_WIDTHR                                     ; 22           ; Untyped             ;
+; LPM_WIDTHS                                     ; 1            ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED       ; Untyped             ;
+; LPM_PIPELINE                                   ; 0            ; Untyped             ;
+; LATENCY                                        ; 0            ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped             ;
+; USE_EAB                                        ; OFF          ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 6            ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_p5t     ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped             ;
++------------------------------------------------+--------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: LCDlogic0:iLCDlogic|lpm_mult:Mult1 ;
++------------------------------------------------+--------------+---------------------+
+; Parameter Name                                 ; Value        ; Type                ;
++------------------------------------------------+--------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 11           ; Untyped             ;
+; LPM_WIDTHB                                     ; 11           ; Untyped             ;
+; LPM_WIDTHP                                     ; 22           ; Untyped             ;
+; LPM_WIDTHR                                     ; 22           ; Untyped             ;
+; LPM_WIDTHS                                     ; 1            ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED       ; Untyped             ;
+; LPM_PIPELINE                                   ; 0            ; Untyped             ;
+; LATENCY                                        ; 0            ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped             ;
+; USE_EAB                                        ; OFF          ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 6            ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_p5t     ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped             ;
++------------------------------------------------+--------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +---------------------------------------------------------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                                                                        ;
 +-------------------------------+-------------------------------------------------------------------------------------+
@@ -659,6 +768,47 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+-------------------------------------------------------------------------------------+
 
 
++----------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                             ;
++---------------------------------------+------------------------------------+
+; Name                                  ; Value                              ;
++---------------------------------------+------------------------------------+
+; Number of entity instances            ; 2                                  ;
+; Entity Instance                       ; LCDlogic0:iLCDlogic|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 11                                 ;
+;     -- LPM_WIDTHB                     ; 11                                 ;
+;     -- LPM_WIDTHP                     ; 22                                 ;
+;     -- LPM_REPRESENTATION             ; SIGNED                             ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                 ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                 ;
+;     -- USE_EAB                        ; OFF                                ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                               ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                 ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                 ;
+; Entity Instance                       ; LCDlogic0:iLCDlogic|lpm_mult:Mult1 ;
+;     -- LPM_WIDTHA                     ; 11                                 ;
+;     -- LPM_WIDTHB                     ; 11                                 ;
+;     -- LPM_WIDTHP                     ; 22                                 ;
+;     -- LPM_REPRESENTATION             ; SIGNED                             ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                 ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                 ;
+;     -- USE_EAB                        ; OFF                                ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                               ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                 ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                 ;
++---------------------------------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "LCDlogic0:iLCDlogic|L10Rom:iL10Rom"                                                    ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; address ; Input  ; Info     ; Stuck at GND                                                                        ;
+; q       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll"                        ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -674,23 +824,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 64                          ;
-; cycloneiii_ff         ; 40                          ;
+; cycloneiii_ff         ; 65                          ;
 ;     CLR               ; 1                           ;
 ;     ENA SCLR          ; 10                          ;
-;     plain             ; 29                          ;
-; cycloneiii_lcell_comb ; 38                          ;
-;     arith             ; 17                          ;
-;         2 data inputs ; 16                          ;
-;         3 data inputs ; 1                           ;
-;     normal            ; 21                          ;
-;         0 data inputs ; 2                           ;
+;     plain             ; 54                          ;
+; cycloneiii_lcell_comb ; 183                         ;
+;     arith             ; 110                         ;
+;         2 data inputs ; 44                          ;
+;         3 data inputs ; 66                          ;
+;     normal            ; 73                          ;
+;         0 data inputs ; 6                           ;
 ;         1 data inputs ; 3                           ;
-;         3 data inputs ; 4                           ;
-;         4 data inputs ; 12                          ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 14                          ;
+;         4 data inputs ; 45                          ;
+; cycloneiii_mac_mult   ; 2                           ;
+; cycloneiii_mac_out    ; 2                           ;
 ; cycloneiii_pll        ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 1.80                        ;
+; Max LUT depth         ; 7.60                        ;
+; Average LUT depth     ; 4.27                        ;
 +-----------------------+-----------------------------+
 
 
@@ -709,7 +862,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Mar 22 20:55:33 2026
+    Info: Processing started: Thu Mar 26 23:35:21 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LCD -c LCD
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -720,7 +873,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file LCDlogi
     Info (12023): Found entity 1: LCDlogic0 File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 8
 Info (12021): Found 2 design units, including 0 entities, in source file LCDpackV2.vhd
     Info (12022): Found design unit 1: LCDpackV2 File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDpackV2.vhd Line: 13
-    Info (12022): Found design unit 2: LCDpackV2-body File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDpackV2.vhd Line: 98
+    Info (12022): Found design unit 2: LCDpackV2-body File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDpackV2.vhd Line: 99
 Info (12021): Found 2 design units, including 1 entities, in source file testbenchV2_LCDlogic.vhd
     Info (12022): Found design unit 1: testbenchV2_LCDlogic-testbench File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/testbenchV2_LCDlogic.vhd Line: 24
     Info (12023): Found entity 1: testbenchV2_LCDlogic File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/testbenchV2_LCDlogic.vhd Line: 21
@@ -735,8 +888,12 @@ Info (12021): Found 4 design units, including 2 entities, in source file VeekMT2
     Info (12022): Found design unit 2: VeekMT2_LCDgenV2_PLL-SYN File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd Line: 132
     Info (12023): Found entity 1: VeekMT2_LCDgenV2 File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd Line: 9
     Info (12023): Found entity 2: VeekMT2_LCDgenV2_PLL File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd Line: 120
-Info (12127): Elaborating entity "Demo_LCDvhd" for the top level hierarchy
-Info (12128): Elaborating entity "VeekMT2_LCDgenV2" for hierarchy "VeekMT2_LCDgenV2:iLCDgenerator" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 70
+Info (12021): Found 2 design units, including 1 entities, in source file L10Rom.vhd
+    Info (12022): Found design unit 1: L10Rom-rtl File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/L10Rom.vhd Line: 18
+    Info (12023): Found entity 1: L10Rom File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/L10Rom.vhd Line: 12
+Info (12127): Elaborating entity "Demo_LCD" for the top level hierarchy
+Info (12128): Elaborating entity "VeekMT2_LCDregV2" for hierarchy "VeekMT2_LCDregV2:iLCDreg"
+Info (12128): Elaborating entity "VeekMT2_LCDgenV2" for hierarchy "VeekMT2_LCDgenV2:iLCDgenerator"
 Warning (10036): Verilog HDL or VHDL warning at VeekMT2_LCDgenV2.vhd(39): object "CLKshift" assigned a value but never read File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd Line: 39
 Info (12128): Elaborating entity "VeekMT2_LCDgenV2_PLL" for hierarchy "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd Line: 45
 Info (12128): Elaborating entity "altpll" for hierarchy "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/VeekMT2_LCDgenV2.vhd Line: 226
@@ -804,78 +961,80 @@ Info (12133): Instantiated megafunction "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_
 Info (12021): Found 1 design units, including 1 entities, in source file db/VeekMT2_LCDgenerator_PLL_altpll.v
     Info (12023): Found entity 1: VeekMT2_LCDgenerator_PLL_altpll File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/db/VeekMT2_LCDgenerator_PLL_altpll.v Line: 31
 Info (12128): Elaborating entity "VeekMT2_LCDgenerator_PLL_altpll" for hierarchy "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component|VeekMT2_LCDgenerator_PLL_altpll:auto_generated" File: /opt/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "LCDlogic0" for hierarchy "LCDlogic0:iLCDlogic" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 77
-Info (12128): Elaborating entity "VeekMT2_LCDregV2" for hierarchy "VeekMT2_LCDregV2:iLCDreg" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 82
+Info (12128): Elaborating entity "LCDlogic0" for hierarchy "LCDlogic0:iLCDlogic"
+Warning (10540): VHDL Signal Declaration warning at LCDlogic0.vhd(27): used explicit default value for signal "L10addr" because signal was never assigned a value File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 27
+Warning (10036): Verilog HDL or VHDL warning at LCDlogic0.vhd(28): object "L10q" assigned a value but never read File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 28
+Warning (10542): VHDL Variable Declaration warning at LCDlogic0.vhd(47): used initial value expression for variable "L10ixColor" because variable was never assigned a value File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 47
+Info (12128): Elaborating entity "L10Rom" for hierarchy "LCDlogic0:iLCDlogic|L10Rom:iL10Rom" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 36
+Info (278001): Inferred 2 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LCDlogic0:iLCDlogic|Mult0" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 60
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LCDlogic0:iLCDlogic|Mult1" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 60
+Info (12130): Elaborated megafunction instantiation "LCDlogic0:iLCDlogic|lpm_mult:Mult0" File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 60
+Info (12133): Instantiated megafunction "LCDlogic0:iLCDlogic|lpm_mult:Mult0" with the following parameter: File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/LCDlogic0.vhd Line: 60
+    Info (12134): Parameter "LPM_WIDTHA" = "11"
+    Info (12134): Parameter "LPM_WIDTHB" = "11"
+    Info (12134): Parameter "LPM_WIDTHP" = "22"
+    Info (12134): Parameter "LPM_WIDTHR" = "22"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_p5t.tdf
+    Info (12023): Found entity 1: mult_p5t File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/db/mult_p5t.tdf Line: 29
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LCD_DIM" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 11
-    Warning (13410): Pin "LCD_DITH" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 11
-    Warning (13410): Pin "LCD_MODE" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 11
-    Warning (13410): Pin "LCD_POWER_CTL" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 11
-    Warning (13410): Pin "LCD_RSTB" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 12
-    Warning (13410): Pin "LCD_SHLR" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 12
-    Warning (13410): Pin "LCD_UPDN" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 12
-    Warning (13410): Pin "LCD_HSD" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 12
-    Warning (13410): Pin "LCD_VSD" is stuck at VCC File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 12
-    Warning (13410): Pin "LCD_B[2]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_B[4]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_B[5]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_B[6]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[0]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[1]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[2]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[3]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[4]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[5]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_G[6]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[0]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[1]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[2]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[3]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[4]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[5]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[6]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LCD_R[7]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 13
-    Warning (13410): Pin "LEDG[0]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[1]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[2]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[3]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[4]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[5]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[6]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[7]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDG[8]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 14
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[10]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[11]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[12]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[13]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[14]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[15]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[16]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
-    Warning (13410): Pin "LEDR[17]" is stuck at GND File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/Demo_LCDvhd.vhd Line: 15
+    Warning (13410): Pin "LCD_DIM" is stuck at VCC
+    Warning (13410): Pin "LCD_DITH" is stuck at VCC
+    Warning (13410): Pin "LCD_MODE" is stuck at VCC
+    Warning (13410): Pin "LCD_POWER_CTL" is stuck at VCC
+    Warning (13410): Pin "LCD_RSTB" is stuck at VCC
+    Warning (13410): Pin "LCD_SHLR" is stuck at VCC
+    Warning (13410): Pin "LCD_UPDN" is stuck at GND
+    Warning (13410): Pin "LCD_HSD" is stuck at VCC
+    Warning (13410): Pin "LCD_VSD" is stuck at VCC
+    Warning (13410): Pin "LCD_B[7]" is stuck at GND
+    Warning (13410): Pin "LCD_B[2]" is stuck at GND
+    Warning (13410): Pin "LEDG[8]" is stuck at GND
+    Warning (13410): Pin "LEDG[7]" is stuck at GND
+    Warning (13410): Pin "LEDG[6]" is stuck at GND
+    Warning (13410): Pin "LEDG[5]" is stuck at GND
+    Warning (13410): Pin "LEDG[4]" is stuck at GND
+    Warning (13410): Pin "LEDG[3]" is stuck at GND
+    Warning (13410): Pin "LEDG[2]" is stuck at GND
+    Warning (13410): Pin "LEDG[1]" is stuck at GND
+    Warning (13410): Pin "LEDG[0]" is stuck at GND
+    Warning (13410): Pin "LEDR[17]" is stuck at GND
+    Warning (13410): Pin "LEDR[16]" is stuck at GND
+    Warning (13410): Pin "LEDR[15]" is stuck at GND
+    Warning (13410): Pin "LEDR[14]" is stuck at GND
+    Warning (13410): Pin "LEDR[13]" is stuck at GND
+    Warning (13410): Pin "LEDR[12]" is stuck at GND
+    Warning (13410): Pin "LEDR[11]" is stuck at GND
+    Warning (13410): Pin "LEDR[10]" is stuck at GND
+    Warning (13410): Pin "LEDR[9]" is stuck at GND
+    Warning (13410): Pin "LEDR[8]" is stuck at GND
+    Warning (13410): Pin "LEDR[7]" is stuck at GND
+    Warning (13410): Pin "LEDR[6]" is stuck at GND
+    Warning (13410): Pin "LEDR[5]" is stuck at GND
+    Warning (13410): Pin "LEDR[4]" is stuck at GND
+    Warning (13410): Pin "LEDR[3]" is stuck at GND
+    Warning (13410): Pin "LEDR[2]" is stuck at GND
+    Warning (13410): Pin "LEDR[1]" is stuck at GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 8 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (15899): PLL "VeekMT2_LCDgenV2:iLCDgenerator|VeekMT2_LCDgenV2_PLL:iLCDpll|altpll:altpll_component|VeekMT2_LCDgenerator_PLL_altpll:auto_generated|pll1" has parameters clk1_multiply_by and clk1_divide_by specified but port CLK[1] is not connected File: /home/martin-belej/Programming/Embeded/altera/LCDbackgrounds_VeekMT2/db/VeekMT2_LCDgenerator_PLL_altpll.v Line: 51
-Info (21057): Implemented 118 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 292 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 62 output pins
-    Info (21061): Implemented 53 logic cells
+    Info (21061): Implemented 223 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 59 warnings
-    Info: Peak virtual memory: 487 megabytes
-    Info: Processing ended: Sun Mar 22 20:55:38 2026
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:13
+    Info (21062): Implemented 4 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 45 warnings
+    Info: Peak virtual memory: 494 megabytes
+    Info: Processing ended: Thu Mar 26 23:35:27 2026
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:14
 
 
