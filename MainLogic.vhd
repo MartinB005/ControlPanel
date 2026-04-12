@@ -5,7 +5,7 @@
 library ieee, work; use ieee.std_logic_1164.all; 
 use ieee.numeric_std.all; -- for integer and unsigned types
 use work.LCDpackV2.all;
-entity LCDlogic0 is
+entity MainLogic is
     port(xcolumn, yrow  : in  xy_t  := XY_ZERO; -- x, y-coordinate of pixel (column, row indexes)
            XEND_N   : in  std_logic := '0'; -- 32.2 kHz'; '0' only when xcolumn=XCOLUMN_MAX, otherwise '1;
            YEND_N   : in  std_logic := '0'; -- 61.4 Hz; '0' only when max yrow=YROW_MAX, otherwise '1',
@@ -13,17 +13,19 @@ entity LCDlogic0 is
            LCD_DCLK : in  std_logic := '0'; -- 33 MHz exactly; LCD data clock
           RGBcolor : out RGB_t); --  defined in LCDpackV2; RGB_t = std_logic_vector(23 downto 0)
 end entity;
-architecture behavioral of LCDlogic0 is
+architecture behavioral of MainLogic is
   constant DARKBLUE: RGB_t := ToRGB(0, 0, 139); -- the background
   type sizes_t is record Width, Height: integer; end record;
   constant L10img : sizes_t :=(192,70);
   constant L10r1 : rect_t :=(520, 170, L10img.Width, L10img.Height);
   constant L10r2 : rect_t :=(520, 170 + L10img.Height, L10img.Width, L10img.Height);
+  constant MORSE : std_logic_vector(57 downto 0) := "0111011100011101010100010001011101010001000101110111011100";
+
+
   
   type palette is array (0 to 2) of RGB_t;
   constant L10p1:palette:=(X"EF7B19",  X"FFEF00",  X"4A8C7B");
-  --constant L10p2:palette4_t:=(BLACK, AQUA, X"696969", X"006400");
-  
+
   signal L10addr: std_logic_vector(13 downto 0):=(others=>'0');
   signal L10q, L10q0: std_logic_vector(1 downto 0):=(others=>'0');
   
@@ -31,7 +33,26 @@ architecture behavioral of LCDlogic0 is
 	begin return std_logic_vector(to_unsigned(n,slvWidth));
   end function;
   
-  begin -- architecture
+  
+  signal index : integer range 0 to 59 := 0;
+signal morse_bit : std_logic;
+
+begin
+
+-- clocked process
+process(LCD_DCLK)
+begin
+    if rising_edge(LCD_DCLK) then
+        if index = 59 then
+            index <= 0;
+        else
+            index <= index + 1;
+        end if;
+    end if;
+end process;
+
+-- read MORSE
+morse_bit <= MORSE(index);
   
   iL10Rom : entity work.L10Rom port map(L10addr, LCD_DCLK, L10q0);
  L10q<=L10q0 when rising_edge(LCD_DCLK);
@@ -41,7 +62,7 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
 -- The values after definitions are mainly for simulations. 
    variable RGB :RGB_t := YELLOW; -- the color of pixel 
    variable x : integer  range 0 to XCOLUMN_MAX:=0; 
-   variable y : integer  range 0 to YROW_MAX:=0; 
+   variable y : integer  range 0 to YROW_MAX:=0;
 	
 	 variable L10idRect : integer range 0 to 2:=0; -- the flag that the x,y pixel is inside a rectangle, 0 - no
 	variable L10ixColor : integer range L10p1'RANGE:=0; -- the

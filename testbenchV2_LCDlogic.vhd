@@ -210,7 +210,7 @@ begin
     --------------------------------------------------------------------------------------
     -- ***ToDo 2 of 2: Adjust to your own component name
 	 --------------------------------------------------------------------------------------
-	 iLCDLogic : entity work.LCDlogic0
+	 iLCDLogic : entity work.MainLogic
 	     port map(
 		   xcolumn=>xcolumn, yrow=>yrow, XEND_N=>XEND_N, YEND_N=>YEND_N, 
          LCD_DE=>LCD_DE, LCD_DCLK=>LCD_DCLK,
