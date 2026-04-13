@@ -34,19 +34,40 @@ architecture behavioral of MainLogic is
   end function;
   
   
+signal counter : integer := 0;
+signal tick    : std_logic := '0';
+
+constant DIVIDER : integer := 50000000; -- adjust for speed
+  
   signal index : integer range 0 to 59 := 0;
 signal morse_bit : std_logic;
 
 begin
 
 -- clocked process
+
 process(LCD_DCLK)
 begin
     if rising_edge(LCD_DCLK) then
-        if index = 59 then
-            index <= 0;
+        if counter = DIVIDER then
+            counter <= 0;
+            tick <= '1';
         else
-            index <= index + 1;
+            counter <= counter + 1;
+            tick <= '0';
+        end if;
+    end if;
+end process;
+
+process(LCD_DCLK)
+begin
+    if rising_edge(LCD_DCLK) then
+        if tick = '1' then
+            if index = 59 then
+                index <= 0;
+            else
+                index <= index + 1;
+            end if;
         end if;
     end if;
 end process;
