@@ -19,7 +19,7 @@ architecture behavioral of MainLogic is
   constant L10img : sizes_t :=(192,70);
   constant L10r1 : rect_t :=(520, 170, L10img.Width, L10img.Height);
   constant L10r2 : rect_t :=(520, 170 + L10img.Height, L10img.Width, L10img.Height);
-  constant MORSE : std_logic_vector(57 downto 0) := "0111011100011101010100010001011101010001000101110111011100";
+  constant MORSE : std_logic_vector(0 to 57) := "0111011100011101010100010001011101010001000101110111011100";
 
 
   
@@ -37,7 +37,7 @@ architecture behavioral of MainLogic is
 signal counter : integer := 0;
 signal tick    : std_logic := '0';
 
-constant DIVIDER : integer := 50000000; -- adjust for speed
+constant DIVIDER : integer := 5000000; -- adjust for speed
   
   signal index : integer range 0 to 59 := 0;
 signal morse_bit : std_logic;
@@ -99,19 +99,34 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
      if (y + LCD_WIDTH/2 < 2 * x - 300) and (y < LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
      if (y > LCD_WIDTH + 378 - 2 * x) and (y > 2*LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
 	  
-     if (x < 500) and (y > LCD_HEIGHT/3) and (y < 2*LCD_HEIGHT/3) 
-		and 3**2 *(x-500)**2 + 2**2 *(y-240)**2 > (250)**2 then RGB:=YELLOW; end if; 
+    
 		
-	  if L10idRect>0 and L10ixColor/=3 then -- Is the current pixel in any rectangle and a color-index is a opacity color?
+	if (morse_bit = '1') then
+		
+	  if L10idRect > 0 and L10ixColor/=3 then -- Is the current pixel in any rectangle and a color-index is a opacity color?
 		RGB:=L10p1(L10ixColor);
 	  end if;
 	  
+
+	 end if;
+	 
 	  case L10idRect is
 			when 1=> L10addr<=toSlv( (y-L10r1.Y)*L10img.Width+(x-L10r1.X), L10addr'LENGTH );
 			when 2=> L10addr<=toSlv( (L10img.Height-(y-L10r2.Y)-1)*L10img.Width+(x-L10r2.X), L10addr'LENGTH );
 			when others=> L10addr<=(others=>'0');
 	  end case;
 	  
+	  
+	   if (x < 500) and (y > LCD_HEIGHT/3) and (y < 2*LCD_HEIGHT/3) 
+		and 3**2 *(x-500)**2 + 2**2 *(y-240)**2 > (250)**2 then RGB:=YELLOW; end if;
+		
+		if (y > 400 and y < 420 and MORSE(x * 37 / 512 ) = '1') then
+				RGB := GREEN; 
+		end if;
+		
+		if (y > 390 and y < 430 and index * 512 / 37 > x - 2 and index * 512 / 37 < x + 2) then
+			RGB := RED;
+		end if;
 	  
      ------------------------------------------------------------
      if LCD_DE = '0' then  RGB  := BLACK; end if; -- auxiliary clipping to LCD visible area
@@ -122,4 +137,3 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
 end architecture;
 
 
- 
