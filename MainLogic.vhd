@@ -1,7 +1,3 @@
--------------------------------------------------------------
--- LCD image created by logic
--------------------------------------------------------------
-
 library ieee, work; use ieee.std_logic_1164.all; 
 use ieee.numeric_std.all; -- for integer and unsigned types
 use work.LCDpackV2.all;
@@ -87,6 +83,9 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
 	
 	 variable L10idRect : integer range 0 to 2:=0; -- the flag that the x,y pixel is inside a rectangle, 0 - no
 	variable L10ixColor : integer range L10p1'RANGE:=0; -- the
+	
+	variable rgb_upper : unsigned(7 downto 0);
+	variable dist : integer;
   begin 
      x := to_integer(xcolumn); y := to_integer(yrow); -- we convert unsigned inputs to integers
 	  L10idRect:=0;
@@ -99,6 +98,9 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
      if (y + LCD_WIDTH/2 < 2 * x - 300) and (y < LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
      if (y > LCD_WIDTH + 378 - 2 * x) and (y > 2*LCD_HEIGHT/3) then RGB:=OLIVE; end if; 
 	  
+	  
+	   if (x < 500) and (y > LCD_HEIGHT/3) and (y < 2*LCD_HEIGHT/3) 
+		and 3**2 *(x-500)**2 + 2**2 *(y-240)**2 > (250)**2 then RGB:=YELLOW; end if;
     
 		
 	if (morse_bit = '1') then
@@ -116,18 +118,26 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
 			when others=> L10addr<=(others=>'0');
 	  end case;
 	  
-	  
-	   if (x < 500) and (y > LCD_HEIGHT/3) and (y < 2*LCD_HEIGHT/3) 
-		and 3**2 *(x-500)**2 + 2**2 *(y-240)**2 > (250)**2 then RGB:=YELLOW; end if;
 		
-		if (y > 400 and y < 420 and MORSE(x * 37 / 512 ) = '1') then
-				RGB := GREEN; 
-		end if;
+		--if (y > 400 and y < 420 and MORSE(x * 35 / 512 ) = '1') then
+	--			RGB := GREEN; 
+	--	end if;
 		
 		if (y > 390 and y < 430 and index * 512 / 37 > x - 2 and index * 512 / 37 < x + 2) then
 			RGB := RED;
 		end if;
-	  
+		
+		dist := ((x - 617) ** 2 + (y - 238) ** 2) / 64;
+		
+		if (dist < 100) then
+			rgb_upper := unsigned(RGB(15 downto 8));
+			rgb_upper := rgb_upper + to_unsigned(100 - dist, 8);
+			RGB(15 downto 8) := std_logic_vector(rgb_upper);
+		end if;
+		
+		
+		
+
      ------------------------------------------------------------
      if LCD_DE = '0' then  RGB  := BLACK; end if; -- auxiliary clipping to LCD visible area
     
@@ -135,5 +145,3 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
    end process;
 	
 end architecture;
-
-
