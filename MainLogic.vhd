@@ -16,6 +16,7 @@ architecture behavioral of MainLogic is
   constant L10r1 : rect_t :=(520, 170, L10img.Width, L10img.Height);
   constant L10r2 : rect_t :=(520, 170 + L10img.Height, L10img.Width, L10img.Height);
   constant MORSE : std_logic_vector(0 to 57) := "0111011100011101010100010001011101010001000101110111011100";
+  constant MORSE_LINE : std_logic_vector(0 to 57) := "0111011100011100000000000000011100000000000001110111011100";
 
 
   
@@ -127,7 +128,12 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
 			RGB := RED;
 		end if;
 		
+			
 		dist := ((x - 617) ** 2 + (y - 238) ** 2) / 64;
+		
+		if MORSE_LINE(index) = '1' then
+			dist := ((x - 617) ** 2 + 2 * (y - 238) ** 2) / 64;
+		end if;
 		
 		if (dist < 100) then
 			rgb_upper := unsigned(RGB(15 downto 8));
@@ -145,3 +151,5 @@ LSPimage : process( xcolumn, yrow, LCD_DE)
    end process;
 	
 end architecture;
+
+ 
